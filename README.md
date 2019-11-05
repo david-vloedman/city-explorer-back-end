@@ -27,24 +27,25 @@ https://agile-retreat-95844.herokuapp.com/
 ## Credits and Collaborations
 Travis Skyles
 
-### User Acceptance Tests
-Number and name of feature: Feature 1 - Locations
-Estimate of time needed to complete: 20mins
+## User Acceptance Tests
+
+### Feature 1 - Locations
+Estimate of time needed to complete: 20 minutes
 Start time: 8:30am
 Finish time: 9:15am
-Actual time needed to complete: 45mins
+Actual time needed to complete: 45 minutes
 
-Number and name of feature: Feature 2 - Weather
-Estimate of time needed to complete: 75mins
+### Feature 2 - Weather
+Estimate of time needed to complete: 75 minutes
 Start time: 9:45am
 Finish time: 10:30am
 Actual time needed to complete: 45mins
 
-Number and name of feature: Feature 3 - Errors
-Estimate of time needed to complete: 10mins
+### Feature 3 - Errors
+Estimate of time needed to complete: 10 minutes
 Start time: 11:00am
 Finish time: 11:10am
-Actual time needed to complete:
+Actual time needed to complete: 10 minutes
 
 
 
