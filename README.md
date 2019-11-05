@@ -1,27 +1,11 @@
-# lab06
 
-### User Acceptance Tests
-Number and name of feature: Feature 1 - Locations
-Estimate of time needed to complete: 20mins
-Start time: 8:30am
-Finish time: 9:15am
-Actual time needed to complete: 45mins
 
-Number and name of feature: Feature 2 - Weather
-Estimate of time needed to complete:
-Start time:
-Finish time: 
-Actual time needed to complete:
+# City Explorer Back-end
+**Author**: David Vloedman
+**Version**: 1.0.0 
 
-Number and name of feature: Feature 3 - Errors
-Estimate of time needed to complete:
-Start time:
-Finish time: 
-Actual time needed to complete:
-# Project Name
-
-**Author**: Your Name Goes Here
-**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+### Heroku Address
+https://mighty-basin-16698.herokuapp.com/
 
 ## Overview
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
@@ -34,11 +18,34 @@ Actual time needed to complete:
 
 ## Change Log
 
-11-15-2019 9:18am - Application has fully functional express server, with a GET route for the location resource
+11-4-2019 9:18am - Application has fully functional express server, with a GET route for the location resource
+11-4-2019 10:34am - Application has GET route for for weather resource
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
 
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource.
 
 ## Credits and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
--->
+Travis Skyles
+
+### User Acceptance Tests
+Number and name of feature: Feature 1 - Locations
+Estimate of time needed to complete: 20mins
+Start time: 8:30am
+Finish time: 9:15am
+Actual time needed to complete: 45mins
+
+Number and name of feature: Feature 2 - Weather
+Estimate of time needed to complete: 75mins
+Start time: 9:45am
+Finish time: 10:30am
+Actual time needed to complete: 45mins
+
+Number and name of feature: Feature 3 - Errors
+Estimate of time needed to complete: 10mins
+Start time: 11:00am
+Finish time: 11:10am
+Actual time needed to complete:
+
+
+
+
