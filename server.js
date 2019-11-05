@@ -1,13 +1,13 @@
 'use strict';
 
-// Load Environment Variables from the .env file
+
 require('dotenv').config();
 
-// Application Dependencies
+
 const express = require('express');
 const cors = require('cors');
 
-// Application Setup
+
 const PORT = process.env.PORT;
 const app = express();
 app.use(cors());
@@ -20,14 +20,14 @@ app.get('/bad', (request,response) => {
   throw new Error('poo');
 });
 
-// The callback can be a separate function. Really makes things readable
+
 app.get('/about', aboutUsHandler);
 
 function aboutUsHandler(request,response) {
   response.status(200).send('About Us Page');
 }
 
-// API Routes
+// ROUTES
 app.get('/location', (request,response) => {
   try {
     const geoData = require('./data/geo.json');
@@ -45,9 +45,9 @@ app.get('/weather', (request, response) => {
     const weather = require('./data/darksky.json');
 
     const days = parseWeather(weather);
-    
+
     response.send(days);
-    
+
   } catch(error){
     errorHandler('THEY AINT NO DATA HERE', request, response);
   }
@@ -57,9 +57,9 @@ app.use('*', notFoundHandler);
 app.use(errorHandler);
 
 // HELPER FUNCTIONS
-const parseWeather = json => {  
-  const data = Object.values(json.daily.data);  
-  const weatherDays = [];  
+const parseWeather = json => {
+  const data = Object.values(json.daily.data);
+  const weatherDays = [];
   data.forEach(day => {
     weatherDays.push(new WeatherDay(new Date(day.time*1000).toDateString(), day.summary));
   });
@@ -71,7 +71,6 @@ function WeatherDay(day, forecast){
   this.forecast = forecast;
 }
 
-
 function Location(city, geoData) {
   this.search_query = city;
   this.formatted_query = geoData.results[0].formatted_address;
@@ -81,7 +80,7 @@ function Location(city, geoData) {
 
 
 
-function  notFoundHandler(request,response) {
+function notFoundHandler(request,response) {
   response.status(404).send('huh?');
 }
 
