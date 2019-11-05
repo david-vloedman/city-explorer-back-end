@@ -20,7 +20,7 @@ https://agile-retreat-95844.herokuapp.com/
 
 11-4-2019 9:18am - Application has fully functional express server, with a GET route for the location resource
 11-4-2019 10:34am - Application has GET route for for weather resource
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
+<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples: --!>
 
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource.
 
