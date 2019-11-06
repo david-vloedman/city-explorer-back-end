@@ -1,25 +1,26 @@
 {
-  "name": "lab-06",
+  "name": "city-explorer-back-end",
   "version": "1.0.0",
-  "description": "### User Acceptance Tests Number and name of feature:",
-  "main": "index.js",
+  "description": "**Author**: David Vloedman **Version**: 1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "superagent": "^5.1.0"
+  },
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tskyles/lab-06.git"
+    "url": "git+https://github.com/david-vloedman/city-explorer-back-end.git"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tskyles/lab-06/issues"
+    "url": "https://github.com/david-vloedman/city-explorer-back-end/issues"
   },
-  "homepage": "https://github.com/tskyles/lab-06#readme",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1"
-  }
+  "homepage": "https://github.com/david-vloedman/city-explorer-back-end#readme"
 }
