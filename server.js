@@ -34,10 +34,9 @@ app.get('/location', handleLocation);
 app.get('/weather', handleWeather);
 
 //Route Handlers
-function handleLocation(request,response) {
-
+function handleLocation(request,response) {  
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${request.query.data}&key=${process.env.GEOCODE_API_KEY}`;
-
+  
   superagent.get(url)
     .then( data=> {
       const geoData = data.body;
@@ -47,9 +46,7 @@ function handleLocation(request,response) {
     .catch( error => {
       console.error(error);
       response.status(500).send('Status: 500. Sorry, there is something not quite right');
-    })
-
-
+    });
 }
 
 function handleWeather(request, response) {
@@ -80,7 +77,7 @@ function handleWeather(request, response) {
 
 function Weather(day) {
   this.forecast = day.summary;
-  this.time = new Date(day.time * 1000).toString().slice(0,15);
+  this.time = new Date(day.time * 1000).toDateString();
 }
 
 
