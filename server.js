@@ -1,13 +1,14 @@
 'use strict';
 
-
+// Load Environment Variables from the .env file
 require('dotenv').config();
 
-
+// Application Dependencies
 const express = require('express');
 const cors = require('cors');
+const superagent = require('superagent');
 
-
+// Application Setup
 const PORT = process.env.PORT;
 const app = express();
 app.use(cors());
@@ -20,56 +21,73 @@ app.get('/bad', (request,response) => {
   throw new Error('poo');
 });
 
-
+// The callback can be a separate function. Really makes things readable
 app.get('/about', aboutUsHandler);
 
 function aboutUsHandler(request,response) {
   response.status(200).send('About Us Page');
 }
 
-// ROUTES
-app.get('/location', (request,response) => {
-  try {
-    const geoData = require('./data/geo.json');
-    const city = request.query.data;
-    const locationData = new Location(city,geoData);
-    response.send(locationData);
-  }
-  catch(error) {
-    errorHandler('So sorry, something went wrong.', request, response);
-  }
-});
+// API Routes
 
-app.get('/weather', (request, response) => {
-  try{
-    const weather = require('./data/darksky.json');
+app.get('/location', handleLocation);
+app.get('/weather', handleWeather);
 
-    const days = parseWeather(weather);
+//Route Handlers
+function handleLocation(request,response) {
 
-    response.send(days);
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${request.query.data}&key=${process.env.GEOCODE_API_KEY}`;
 
-  } catch(error){
-    errorHandler('THEY AINT NO DATA HERE', request, response);
-  }
-});
+  superagent.get(url)
+    .then( data=> {
+      const geoData = data.body;
+      const location = new Location(request.query.data, geoData);
+      response.send(location);
+    })
+    .catch( error => {
+      console.error(error);
+      response.status(500).send('Status: 500. Sorry, there is something not quite right');
+    })
+
+
+}
+
+function handleWeather(request, response) {
+  // try{
+  //   const darkskyData = require('./data/darksky.json');
+  //   const weatherSummaries = [];
+  //   darkskyData.daily.data.forEach( day => {
+  //     weatherSummaries.push(new Weather(day));
+  //   });
+  //   response.status(200).json(weatherSummaries);
+  // }
+  // catch {
+  //   errorHandler('so sorry, that is wrong')
+  // }
+  const url = `https://api.darksky.net/forecast/${process.env.WEATHER_API_KEY}/${request.query.data.latitude},${request.query.data.longitude}`;
+  superagent.get(url)
+    .then( data => {
+      const weatherSummaries = data.body.daily.data.map(day => {
+        return new Weather(day);
+      });
+      response.status(200).json(weatherSummaries);
+    })
+    .catch( ()=> {
+      errorHandler('So sorry, something went really wrong', request, response);
+    });
+
+}
+
+function Weather(day) {
+  this.forecast = day.summary;
+  this.time = new Date(day.time * 1000).toString().slice(0,15);
+}
+
 
 app.use('*', notFoundHandler);
 app.use(errorHandler);
 
 // HELPER FUNCTIONS
-const parseWeather = json => {
-  const data = Object.values(json.daily.data);
-  const weatherDays = [];
-  data.forEach(day => {
-    weatherDays.push(new WeatherDay(new Date(day.time*1000).toDateString(), day.summary));
-  });
-  return weatherDays;
-}
-
-function WeatherDay(day, forecast){
-  this.time = day;
-  this.forecast = forecast;
-}
 
 function Location(city, geoData) {
   this.search_query = city;
@@ -80,7 +98,7 @@ function Location(city, geoData) {
 
 
 
-function notFoundHandler(request,response) {
+function  notFoundHandler(request,response) {
   response.status(404).send('huh?');
 }
 
