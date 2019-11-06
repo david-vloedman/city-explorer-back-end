@@ -32,7 +32,7 @@ function aboutUsHandler(request,response) {
 
 app.get('/location', handleLocation);
 app.get('/weather', handleWeather);
-app.get('/event', handleEvent);
+//app.get('/event', handleEvent);
 
 //Route Handlers
 function handleLocation(request,response) {  
