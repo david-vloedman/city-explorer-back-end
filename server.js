@@ -32,12 +32,12 @@ function aboutUsHandler(request,response) {
 
 app.get('/location', handleLocation);
 app.get('/weather', handleWeather);
+app.get('/event', handleEvent);
 
 //Route Handlers
-function handleLocation(request,response) {
-
+function handleLocation(request,response) {  
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${request.query.data}&key=${process.env.GEOCODE_API_KEY}`;
-
+  
   superagent.get(url)
     .then( data=> {
       const geoData = data.body;
@@ -47,23 +47,11 @@ function handleLocation(request,response) {
     .catch( error => {
       console.error(error);
       response.status(500).send('Status: 500. Sorry, there is something not quite right');
-    })
-
-
+    });
 }
 
 function handleWeather(request, response) {
-  // try{
-  //   const darkskyData = require('./data/darksky.json');
-  //   const weatherSummaries = [];
-  //   darkskyData.daily.data.forEach( day => {
-  //     weatherSummaries.push(new Weather(day));
-  //   });
-  //   response.status(200).json(weatherSummaries);
-  // }
-  // catch {
-  //   errorHandler('so sorry, that is wrong')
-  // }
+
   const url = `https://api.darksky.net/forecast/${process.env.WEATHER_API_KEY}/${request.query.data.latitude},${request.query.data.longitude}`;
   superagent.get(url)
     .then( data => {
@@ -78,9 +66,19 @@ function handleWeather(request, response) {
 
 }
 
+// function handleEvent(request, reponse){
+//   const url = `https://www.eventbriteapi.com/v3/events/search/?location.address=${request.query.data.location}&token=${process.env.EVENTBRITE_API_KEY}`
+//    superagent.get(`https://www.eventbriteapi.com/v3/users/me?token=${process.env.EVENTBRITE_API_KEY}`)
+//    .then(superagent.get(url)
+//    .then());
+  
+// }
+
+
+
 function Weather(day) {
   this.forecast = day.summary;
-  this.time = new Date(day.time * 1000).toString().slice(0,15);
+  this.time = new Date(day.time * 1000).toDateString();
 }
 
 
